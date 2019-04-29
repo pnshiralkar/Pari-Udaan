@@ -13,6 +13,10 @@
         html{
             scroll-behavior: smooth;
         }
+        .border-w-3{
+            border-width: 1.4px !important;
+        }
+
         .fakeimg {
             height: 200px;
             width: 50%;
@@ -68,7 +72,7 @@
             <div class="col-md-8">
                     <div id="sf1" class="frm">
                         <div class="card">
-                            <div class="card-header"><h3>Your Profile</h3></div>
+                            <div class="card-header" id="steps"><h3>Your Profile</h3></div>
                             <div class="card-body">
 
 
@@ -235,42 +239,65 @@
                                     <legend>Upload Documents</legend>
 
                                     <div class="form-group">
-                                        <label for="Photo" class="col-sm-3 control-label">Photo: </label>
-                                        <input type="file" class="form-control-file border" name="file">
-                                        <button type="submit" class="float-right btn btn-dark">Upload</button>   <!--Check Button type-->
+                                        <form action="photo.php" method="post" enctype="multipart/form-data" id="form_up1"><input type="hidden" name="pic_name" value="photo">
+                                        <label for="fileToUpload" class="col-sm-3 control-label">Photo: </label>
+                                            <input type="file" name="fileToUpload" id="photo1" class="form-control-file border" >
+                                            <input type="submit" class="float-right btn btn-dark" id="upload1" value="Upload" name="submit">   <!--Check Button type-->
+                                            <button class="btn btn-success float-right" id="view1" type="button" style="visibility: hidden;"><span class="fa fa-arrow-left"></span> View Uploaded document</button>
+                                        </form>
                                     </div>
                                     &nbsp;
                                     <div class="form-group">
-                                        <label for="Marksheet" class="col-sm-3 control-label">Marksheet: </label>
-                                        <input type="file" class="form-control-file border" name="file">
-                                        <button type="submit" class="float-right btn btn-dark">Upload</button>   <!--Check Button type-->
+                                        <form action="photo.php" method="post" enctype="multipart/form-data" id="form_up2"><input type="hidden" name="pic_name" value="marksheet">
+                                            <label for="fileToUpload" class="col-sm-3 control-label">Marksheet: </label>
+                                            <input type="file" name="fileToUpload" id="photo2" class="form-control-file border" >
+                                            <input type="submit" class="float-right btn btn-dark" id="upload2" value="Upload" name="submit">   <!--Check Button type-->
+                                            <button class="btn btn-success float-right" id="view2" type="button" style="visibility: hidden;"><span class="fa fa-arrow-left"></span> View Uploaded document</button>
+                                        </form>
                                     </div>
                                     &nbsp;
                                     <div class="form-group">
-                                        <label for="Aadhar" class="col-sm-3 control-label">Aadhar card: </label>
-                                        <input type="file" class="form-control-file border" name="file">
-                                        <button type="submit" class="float-right btn btn-dark">Upload</button>   <!--Check Button type-->
+                                        <form action="photo.php" method="post" enctype="multipart/form-data" id="form_up2"><input type="hidden" name="pic_name" value="aadhar">
+                                            <label for="fileToUpload" class="col-sm-3 control-label">Aadhar: </label>
+                                            <input type="file" name="fileToUpload" id="photo3" class="form-control-file border" value="ab">
+                                            <input type="submit" class="float-right btn btn-dark" id="upload3" value="Upload" name="submit">   <!--Check Button type-->
+                                            <button class="btn btn-success float-right" id="view3" type="button" style="visibility: hidden;"><span class="fa fa-arrow-left"></span> View Uploaded document</button>
+                                        </form>
                                     </div>
+                                    <br>
                                     &nbsp;
 
 
                                     <div class="form-group">
                                         <div class="col-lg-10 col-lg-offset-2">
-                                            <!-- Unique class name -->
+                                            <form id="form_step3"><input type="hidden" name="step" value="3">
                                             <button class="btn btn-warning back2" id="back3" type="button"><span class="fa fa-arrow-left"></span> Back</button>
-                                            <!-- open2 unique class name -->
-                                            <input type="submit" class="btn btn-primary open1" id="next" value="Submit"><span class="fa fa-arrow-right"></span></input>
+                                            <input type="submit" class="btn btn-primary open1" id="next3" value="Submit" disabled></form>
                                             <img src="spinner.gif" alt="" id="loader" style="display: none">
                                         </div>
                                     </div>
+                                    </form>
                                 </fieldset>
-                            </div></div></div>
-                </form>
+                            </div></div>
+
+                    </div>
+                <div id="sf4" class="frm" style="display: none;">
+                    <div class="card">
+                        <div class="card-header"><h3>Success</h3></div>
+                        <div class="card-body">
+
+
+                            <fieldset>
+                                <legend>Form was submitted successfully!</legend>
+                                <br><br><br>
+                                <div class="text-center" style="width: 100%">
+                                    <button class="btn btn-primary" id="edit" type="button"><span class="fa fa-arrow-left"></span> Edit Form</button>
+                                </div>
+                            </fieldset>
+                        </div></div>
             </div>
         </div>
     </div>
-</div>
-</div>
 </div>
 </body>
 </html>

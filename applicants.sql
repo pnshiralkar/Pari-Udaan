@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 28, 2019 at 11:08 AM
+-- Generation Time: Apr 29, 2019 at 05:20 AM
 -- Server version: 5.5.39
 -- PHP Version: 7.2.5
 
@@ -44,15 +44,18 @@ CREATE TABLE `applicants` (
   `tmarks` int(11) DEFAULT NULL,
   `per` decimal(5,2) DEFAULT NULL,
   `school` varchar(256) DEFAULT NULL,
-  `schooladd` varchar(256) DEFAULT NULL
+  `schooladd` varchar(256) DEFAULT NULL,
+  `photo` varchar(1024) DEFAULT NULL,
+  `marksheet` varchar(1024) DEFAULT NULL,
+  `aadhar` varchar(1024) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `applicants`
 --
 
-INSERT INTO `applicants` (`ID`, `name`, `email`, `pwd`, `progress`, `contact`, `dob`, `mother`, `address`, `class`, `board`, `marks`, `tmarks`, `per`, `school`, `schooladd`) VALUES
-(1, 'Example M S', 'pnshiralkar@gmail.com', '123', 2, 9075577238, '1999-12-04', 'Mother', 'Pune', 10, 'CBSE', 500, 600, '91.00', 'school name', '                    school in pune');
+INSERT INTO `applicants` (`ID`, `name`, `email`, `pwd`, `progress`, `contact`, `dob`, `mother`, `address`, `class`, `board`, `marks`, `tmarks`, `per`, `school`, `schooladd`, `photo`, `marksheet`, `aadhar`) VALUES
+(1, 'Example M S', 'pnshiralkar@gmail.com', '123', 3, 9075577238, '1999-12-04', 'Mother', 'Pune', 10, 'CBSE', 500, 600, '91.00', 'school name', '                    school in pune', 'documents/pnshiralkar@gmail.com/photo.jpg', 'documents/pnshiralkar@gmail.com/marksheet.jpg', 'documents/pnshiralkar@gmail.com/aadhar.jpg');
 
 --
 -- Indexes for dumped tables

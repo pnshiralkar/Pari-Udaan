@@ -5,6 +5,7 @@ function step(n)
         document.getElementById("sf1").style.display = "block";
         document.getElementById("sf2").style.display = "none";
         document.getElementById("sf3").style.display = "none";
+        document.getElementById("sf4").style.display = "none";
     }
 
     if(n===1)
@@ -12,6 +13,7 @@ function step(n)
         document.getElementById("sf1").style.display = "none";
         document.getElementById("sf2").style.display = "block";
         document.getElementById("sf3").style.display = "none";
+        document.getElementById("sf4").style.display = "none";
     }
 
     if(n===2)
@@ -19,7 +21,17 @@ function step(n)
         document.getElementById("sf1").style.display = "none";
         document.getElementById("sf2").style.display = "none";
         document.getElementById("sf3").style.display = "block";
+        document.getElementById("sf4").style.display = "none";
     }
+
+    if(n===3)
+    {
+        document.getElementById("sf1").style.display = "none";
+        document.getElementById("sf2").style.display = "none";
+        document.getElementById("sf3").style.display = "none";
+        document.getElementById("sf4").style.display = "block";
+    }
+
     scrollTo(0,130)
 }
 
@@ -30,6 +42,11 @@ $(document).ready(function () {
     $('#back2').on("click", function () {
         step(0);
     });
+
+    $('#edit').on("click", function () {
+        step(0);
+    });
+
     $('#back3').on("click", function () {
         step(1);
     });
@@ -67,7 +84,31 @@ $(document).ready(function () {
         if(typeof data.per != "undefined") $('#per').val(data.per);
         if(typeof data.school != "undefined") $('#school').val(data.school);
         if(typeof data.schooladd != "undefined") $('#schooladd').val(data.schooladd);
+        if(typeof data.photo != "undefined"){ $('#photo1').attr("class", "form-control-file border border-success border-w-3"); $('#view1').attr("style", "visibility: visible");}
+        if(typeof data.marksheet != "undefined"){ $('#photo2').attr("class", "form-control-file border border-success border-w-3"); $('#view2').attr("style", "visibility: visible");}
+        if(typeof data.aadhar != "undefined"){ $('#photo3').attr("class", "form-control-file border border-success border-w-3"); $('#view3').attr("style", "visibility: visible");}
+
+        if(typeof data.photo != "undefined" && typeof data.marksheet != "undefined" && typeof data.aadhar != "undefined")
+        {
+            $('#next3').attr("disabled", false);
+        }else{
+            $('#next3').attr("title", "Please upload all the documents first!");
+        }
+
+        $('#view1').click(function () {
+            window.open(data.photo, "_blank");
+        });
+
+        $('#view2').click(function () {
+            window.open(data.marksheet, "_blank");
+        });
+
+        $('#view3').click(function () {
+            window.open(data.aadhar, "_blank");
+        });
     });
+
+
 
     
     $('#form_step1').on("submit", function (e) {
@@ -91,9 +132,17 @@ $(document).ready(function () {
     });
 
 
-   /* $('#login_submit').click(function () {
-       $.post("aja.php", $('#form_login').serialize(), function (data) {
-           console.log(data);
-       });
-   }); */
+    $('#form_step3').on("submit", function (e) {
+        e.preventDefault();
+        $.post("save.php", $('#form_step3').serialize(), function (data) {
+            console.log(data);
+            if(JSON.parse(data).progress === 3)
+            {
+                step(JSON.parse(data).progress);
+            }
+            $('#next3').attr("disabled", false).val("Next");
+        });
+        $('#next3').attr("disabled", true).val("Loading...");
+    });
+
 });

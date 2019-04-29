@@ -96,15 +96,15 @@ $(document).ready(function () {
         }
 
         $('#view1').click(function () {
-            window.open(data.photo, "_blank");
+            window.open("viewdocs.php?email=" + data.email + "&doc=" + data.photo, "_blank");
         });
 
         $('#view2').click(function () {
-            window.open(data.marksheet, "_blank");
+            window.open("viewdocs.php?email=" + data.email + "&doc=" + data.marksheet, "_blank");
         });
 
         $('#view3').click(function () {
-            window.open(data.aadhar, "_blank");
+            window.open("viewdocs.php?email=" + data.email + "&doc=" + data.aadhar, "_blank");
         });
     });
 

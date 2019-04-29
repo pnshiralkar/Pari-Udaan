@@ -14,11 +14,19 @@ if (isset($_POST["submit"])) {
     if ($check !== false) {
         echo "File is an image - " . $check["mime"] . ".";
         $uploadOk = 1;
+
+        require ("connect.php");
+        $sql = "SELECT * FROM applicants WHERE email = '" . $_SESSION['email'] . "'";
+        $row = $conn->query($sql)->fetch_assoc();
+        if(isset($row[$name]))
+        {
+            unlink($target_dir . $row[$name]);
+        }
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
             echo "The file " . basename($_FILES["fileToUpload"]["name"]) . " has been uploaded.";
-            require ("connect.php");
-            $sql = "UPDATE applicants SET " . $name . " = '" . $target_file . "' WHERE email = '" . $_SESSION['email'] . "'";
+            $sql = "UPDATE applicants SET " . $name . " = '" . basename($name) . $imageFileType . "' WHERE email = '" . $_SESSION['email'] . "'";
             if ($conn->query($sql)) {
+
                 header("Location: form.php");
             }
         } else {
